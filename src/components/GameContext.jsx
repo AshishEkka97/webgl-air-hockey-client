@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
+import axios from 'axios';
 import io from 'socket.io-client';
 import { gameStates } from '../gameStates';
 import { useInterval } from '../hooks/useInterval';
@@ -8,7 +9,6 @@ export const GameContext = createContext();
 export function GameContextProvider({ children }) {
   const [gameState, setGameState] = useState(gameStates.WELCOME);
   const [gameID, setGameID] = useState(null);
-  const [gameURL, setGameURL] = useState(null);
   const [socket, setSocket] = useState(null);
   const [playerNumber, setPlayerNumber] = useState(null);
   const [movementX, setMovementX] = useState(false);
@@ -63,14 +63,11 @@ export function GameContextProvider({ children }) {
     document.body.requestPointerLock();
   };
 
-  const handleCreateGame = () => {
-    fetch(`${process.env.REACT_APP_SERVER_URL}/create-game`)
-      .then(res => res.json())
-      .then(({ gameID }) => {
-        setGameState(gameStates.INVITE_PENDING);
-        setGameURL(`${process.env.REACT_APP_CLIENT_URL}/${gameID}`);
-        setGameID(gameID);
-      });
+  const handleCreateGame = async () => {
+    const result = await axios.get(`${process.env.REACT_APP_SERVER_URL}/create-game`);
+    const { gameID } = result.data;
+    setGameID(gameID);
+    setGameState(gameStates.INVITE_PENDING);
   };
 
   const handleStart = () => {
@@ -89,16 +86,15 @@ export function GameContextProvider({ children }) {
   return (
     <GameContext.Provider
       value={{
-        gameState,
+        assetPositions,
         gameID,
-        gameURL,
-        socket,
-        playerNumber,
+        gameState,
+        handleCreateGame,
+        handleReadyUp,
         movementX,
         movementY,
-        assetPositions,
-        handleReadyUp,
-        handleCreateGame
+        playerNumber,
+        socket
       }}>
       {children}
     </GameContext.Provider>
