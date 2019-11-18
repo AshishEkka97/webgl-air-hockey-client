@@ -3,5 +3,8 @@ export const gameStates = {
   INVITE_PENDING: 'INVITE_PENDING',
   READY_UP: 'READY_UP',
   READY: 'READY',
-  STARTED: 'STARTED'
+  STARTING: 'STARTING',
+  STARTED: 'STARTED',
+  GOAL: 'GOAL',
+  END: 'END'
 };

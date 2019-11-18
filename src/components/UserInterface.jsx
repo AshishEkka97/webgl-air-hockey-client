@@ -1,9 +1,13 @@
 import React, { useContext } from 'react';
 import { gameStates } from '../gameStates';
 import { GameContext } from './GameContext';
+import { WelcomeScreen } from './WelcomeScreen';
 import { InviteScreen } from './InviteScreen';
 import { ReadyUpScreen } from './ReadyUpScreen';
-import { WelcomeScreen } from './WelcomeScreen';
+import { StartingScreen } from './StartingScreen';
+import { GameScreen } from './GameScreen';
+import { GoalScreen } from './GoalScreen';
+import { EndScreen } from './EndScreen';
 
 export function UserInterface() {
   const { gameState } = useContext(GameContext);
@@ -11,8 +15,12 @@ export function UserInterface() {
   return (
     <div className="interface">
       {gameState === gameStates.WELCOME && <WelcomeScreen />}
-      {gameState === gameStates.READY_UP && <ReadyUpScreen />}
       {gameState === gameStates.INVITE_PENDING && <InviteScreen />}
+      {gameState === gameStates.READY_UP && <ReadyUpScreen />}
+      {gameState === gameStates.STARTING && <StartingScreen />}
+      {gameState === gameStates.STARTED && <GameScreen />}
+      {gameState === gameStates.GOAL && <GoalScreen />}
+      {gameState === gameStates.END && <EndScreen />}
     </div>
   );
 }

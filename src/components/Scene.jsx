@@ -4,11 +4,11 @@ import { gameStates } from '../gameStates';
 import ThreeScene from './ThreeScene';
 
 export function Scene() {
-  const { assetPositions, gameState, playerNumber } = useContext(GameContext);
+  const { assetPositions, gameState, controlledPlayer } = useContext(GameContext);
   return (
     <ThreeScene
       started={gameState === gameStates.STARTED}
-      playerNumber={playerNumber}
+      controlledPlayer={controlledPlayer}
       assetPositions={assetPositions}
     />
   );
