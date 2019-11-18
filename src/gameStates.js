@@ -1,0 +1,7 @@
+export const gameStates = {
+  WELCOME: 'WELCOME',
+  INVITE_PENDING: 'INVITE_PENDING',
+  READY_UP: 'READY_UP',
+  READY: 'READY',
+  STARTED: 'STARTED'
+};
