@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef } from 'react';
 import { Vector3 } from 'three';
 
 import { useAnimationFrame } from '../../hooks/useAnimationFrame';
-import { gameStates } from '../../gameStates';
+import { gameStates } from '../../constants';
 import { GameContext } from '../GameContext';
 
 import { Container } from './styled';

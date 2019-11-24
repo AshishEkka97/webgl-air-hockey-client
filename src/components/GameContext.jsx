@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import io from 'socket.io-client';
-import { gameStates } from '../gameStates';
+import { gameStates } from '../constants';
 import { useInterval } from '../hooks/useInterval';
 
 export const GameContext = createContext();

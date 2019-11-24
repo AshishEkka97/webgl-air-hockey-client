@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { gameStates } from '../gameStates';
+import { gameStates } from '../constants';
 import { GameContext } from './GameContext';
 import { WelcomeScreen } from './WelcomeScreen';
 import { InviteScreen } from './InviteScreen';
