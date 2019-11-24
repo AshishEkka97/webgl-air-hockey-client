@@ -5,7 +5,6 @@ import { useAnimationFrame } from '../../hooks/useAnimationFrame';
 import { gameStates } from '../../constants';
 import { GameContext } from '../GameContext';
 
-import { Container } from './styled';
 import { camera, renderer, scene } from './renderer';
 import { lightAmbient, lightHemisphere, lightPoint, lightSpotBlue, lightSpotRed } from './lights';
 import { meshPaddle1, meshPaddle2, meshPuck, meshTable } from './meshes';
@@ -62,7 +61,7 @@ export function ThreeScene() {
   useEffect(() => {
     function init() {
       container.current.appendChild(renderer.domElement);
-      renderer.setSize(container.current.clientWidth, container.current.clientHeight);
+      renderer.setSize(window.innerWidth, window.innerHeight);
       if (window.devicePixelRatio > 1) renderer.setPixelRatio(window.devicePixelRatio * 0.5);
       scene.add(
         lightAmbient,
@@ -100,15 +99,15 @@ export function ThreeScene() {
   // Window Events
   useEffect(() => {
     function handleResize() {
-      camera.aspect = container.current.clientWidth / container.current.clientHeight;
+      camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(container.current.clientWidth, container.current.clientHeight);
+      renderer.setSize(window.innerWidth, window.innerHeight);
     }
     window.addEventListener('resize', () => handleResize());
     return window.removeEventListener('resize', () => handleResize());
   }, []);
 
-  return <Container ref={container} />;
+  return <div ref={container} />;
 }
 
 export default ThreeScene;
