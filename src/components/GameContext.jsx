@@ -29,12 +29,6 @@ export function GameContextProvider({ children }) {
     winner: null
   });
 
-  const [assetPositions, setAssetPositions] = useState({
-    puck: 0,
-    paddle1: { x: 0, y: 0 },
-    paddle2: { x: 0, y: 0 }
-  });
-
   useInterval(() => {
     if (gameState === gameStates.STARTED) {
       if (movementX === false && movementY === false) {
@@ -73,7 +67,6 @@ export function GameContextProvider({ children }) {
       socket.on('game-started', () => setGameState(gameStates.STARTED));
       socket.on('game-goal', () => setGameState(gameStates.GOAL));
       socket.on('game-end', () => setGameState(gameStates.END));
-      socket.on('game-simulation-updated', data => setAssetPositions(data.assetPositions));
     }
   }, [socket]);
 
@@ -109,7 +102,6 @@ export function GameContextProvider({ children }) {
   return (
     <GameContext.Provider
       value={{
-        assetPositions,
         controlledPlayer,
         countdown,
         gameDetails,

@@ -1,13 +1,13 @@
 import React from 'react';
 import { GameContextProvider } from './GameContext';
 import { UserInterface } from './UserInterface';
-import { Scene } from './Scene';
+import { ThreeScene } from './ThreeScene';
 
 function App() {
   return (
     <GameContextProvider>
       <UserInterface />
-      <Scene />
+      <ThreeScene />
     </GameContextProvider>
   );
 }
